@@ -1,6 +1,18 @@
 // Write your JavaScript code here!
 
 window.addEventListener("load", function() {
+    let form = document.querySelector("form");
+      form.addEventListener("submit", function(event) {
+         let pilotNameInput = document.querySelector("input[name=pilotName]");
+         let coPilot = document.querySelector("input[name=coPilot]");
+         if (pilotNameInput.value === "" || coPilot.value === "") {
+            alert("All fields are required!");
+         } else if (fuelLevel.value === "" || cargoMass.value === ""){
+            alert("All fields are required!");
+         }
+            event.preventDefault();
+         });
+      
 
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
