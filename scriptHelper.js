@@ -23,27 +23,32 @@ function validateInput(testInput) {
         return "Not a Number"
     } else {
         return "Is a Number"
-    }
-
-    let form = document.querySelector("form");
-    /*
-    form.addEventListener("submit", function(event) {
-        let pilotNameInput = document.querySelector("input[name=pilotName]");
-        let pilotName = pilotNameInput.value
-        let coPilotInput = document.querySelector("input[name=copilotName]");
-        let coPilot = coPilotInput.value
-        let fuelLevelInput= document.querySelector("input[name=fuelLevel]");
-        let fuelLevel = fuelLevelInput.value
-        let cargoMassInput = document.querySelector("input[name=cargoMass]");
-        let cargoMass = cargoMassInput.value
-    })
-    */
-    return 
-}
+    };
+    
+};
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+   let validPilotInput = validateInput(pilot);
+   let validCopilotInput = validateInput(copilot);
+   let validFuelLevel = validateInput(fuelLevel);
+   let validCargoLevel = validateInput(cargoLevel);
    
-}
+   if(validPilotInput === "Empty" || validCopilotInput === "Empty" ||
+      validFuelLevel === "Empty" || validCargoLevel === "Empty"){
+    return alert("All fields are required!");
+   }
+   else if (validFuelLevel === "Not a Number" || validCargoLevel === "Not a Number"){
+       return alert("Enter Valid Information for Each Field");
+   }
+ 
+list.style.visibility = "visible";
+document.getElementById("pilotStatus").innerHTML = `Pilot ${validPilotInput} is ready for Launch`;
+document.getElementById("copilotStatus").innerHTML = `Copilot ${validCopilotInput} is ready for Launch`;
+ }
+ }
+
+
+   
 
 async function myFetch() {
     let planetsReturned;
@@ -53,6 +58,7 @@ async function myFetch() {
 
     return planetsReturned;
 }
+
 
 function pickPlanet(planets) {
 }
