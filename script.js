@@ -1,17 +1,18 @@
 // Write your JavaScript code here!
 
-const formSubmission = require("./scriptHelper");
-
+// const hamSandwich = require("./scriptHelper");
 window.addEventListener("load", function() {
     let form = document.querySelector("form");
       form.addEventListener("submit", function(event) {
+         event.preventDefault();
          let pilot = document.querySelector("input[name=pilotName]");
          let coPilot = document.querySelector("input[name=copilotName]");
          let fuelLevel= document.querySelector("input[name=fuelLevel]");
          let cargoMass = document.querySelector("input[name=cargoMass]");
+         let list = document.querySelector("#faultyItems");
          formSubmission(document, list, pilot.value, coPilot.value, fuelLevel.value, cargoMass.value)
 
-            event.preventDefault();
+            
          });
       
 
