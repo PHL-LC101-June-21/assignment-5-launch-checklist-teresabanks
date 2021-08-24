@@ -27,11 +27,11 @@ function validateInput(testInput) {
 
 };
 
-function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
     let validPilotInput = validateInput(pilot);
     let validCopilotInput = validateInput(copilot);
     let validFuelLevel = validateInput(fuelLevel);
-    let validCargoLevel = validateInput(cargoLevel);
+    let validCargoLevel = validateInput(cargoMass);
 
     if (validPilotInput === "Empty" || validCopilotInput === "Empty" ||
         validFuelLevel === "Empty" || validCargoLevel === "Empty") {
@@ -39,27 +39,34 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     }
     else if (validFuelLevel === "Not a Number" || validCargoLevel === "Not a Number") {
         return alert("Enter Valid Information for Each Field");
-    }
+    } 
 
     list.style.visibility = "visible";
     document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for Launch`;
     document.getElementById("copilotStatus").innerHTML = `Copilot ${copilot} is ready for Launch`;
 
-    if (validFuelLevel < 10000){
+    if (fuelLevel < 10000){
         document.getElementById("fuelStatus").innerHTML = "Fuel too low for launch";
         document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch";
         document.getElementById("launchStatus").style.color = "red";
-    } else if (validCargoLevel > 10000){
+        console.log("valid fuel level less than 10000")
+    }
+    
+    if (cargoMass > 10000){
         document.getElementById("cargoStatus").innerHTML = "Cargo level too high for launch";
         document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch";
         document.getElementById("launchStatus").style.color = "red";
-    }
-
-    if(validCargoLevel > 10000 && validFuelLevel < 10000){
+    } 
+    
+    if (cargoMass < 10000 && fuelLevel > 10000){
         document.getElementById("launchStatus").style.color = "green";
         document.getElementById("launchStatus").innerHTML = "Shuttle is Ready for Launch";
+    
     }
-}
+    }
+
+    
+
 
 
 
